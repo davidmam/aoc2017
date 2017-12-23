@@ -10,13 +10,13 @@ Created on Thu Dec 21 08:27:24 2017
 # build rotation and reflection matrices for each operation
 
 rot2 = [[0, 1, 2, 3],
- [3, 0, 1, 2],
- [2, 3, 0, 1],
- [1, 2, 3, 0],
- [1, 0, 3, 2],
- [0, 3, 2, 1],
+ [2, 0, 3, 1],
  [3, 2, 1, 0],
- [2, 1, 0, 3]]
+ [1, 3, 0, 2],
+ [1, 0, 3, 2],
+ [0, 2, 1, 3],
+ [2,3,0, 1],
+ [3, 1, 2, 0]]
 
 rot3 = [[0, 1, 2, 3, 4, 5, 6, 7, 8],
  [6, 3, 0, 7, 4, 1, 8, 5, 2],
@@ -56,10 +56,11 @@ def expand(grid):
                 for p in rot2:
                     if fliprot(pattern,p) in map2:
                         newpat=fliprot(pattern,p)
+                        map2[pattern] = map2[newpat]
                         break
                 if len(newpat)==0:
-                    print('input is {}'.format(pattern))
-                    input('???')
+                    print('input is {} ({},{})'.format(pattern,r,c))
+                
                 newgrid[-3]+=map2[newpat][0]
                 newgrid[-2]+=map2[newpat][1]
                 newgrid[-1]+=map2[newpat][2]
@@ -72,10 +73,11 @@ def expand(grid):
                 for p in rot3:
                     if fliprot(pattern,p) in map3:
                         newpat=fliprot(pattern,p)
+                        map3[pattern] = map3[newpat]
                         break
                 if len(newpat)==0:
-                    print('input is {}'.format(pattern))
-                    input('???')
+                    print('input is {} ({},{})'.format(pattern,r,c))
+
                 newgrid[-4]+=map3[newpat][0]
                 newgrid[-3]+=map3[newpat][1]
                 newgrid[-2]+=map3[newpat][2]
